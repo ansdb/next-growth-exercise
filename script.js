@@ -32,8 +32,11 @@ function addCurrentUsers(users){
 
         users.forEach(userItems => {
             const user = document.createElement('tr');
+            const usersAddIn = document.querySelector('.manage-users__users');
+
             user.className = 'manage-users__user';
-            document.querySelector('.manage-users__users').append(user);
+
+            usersAddIn.append(user);
 
             for(let userItem in userItems){
                 userInfo = document.createElement('td');
@@ -52,6 +55,10 @@ function addCurrentUsers(users){
 
                 user.append(userInfo);
             }
+
+            const actionRow = document.createElement('td');
+            actionRow.innerHTML = '<button type="button" class="delete-user"></button>';
+            user.append(actionRow);
         });
 }
 
