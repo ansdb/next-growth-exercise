@@ -49,7 +49,9 @@ function addCurrentUsers(users){
                     }else if(userItems[userItem] === 'Rejeté'){
                         userInfo.innerHTML = '<span class="status rejected">' + userItems[userItem] + '</span>'
                     }
-                }else{
+                } else if(userItem === 'createdDate'){
+                    userInfo.innerText = dateFormater(userItems[userItem]);
+                } else{
                     userInfo.innerText = userItems[userItem];
                 }
 
@@ -64,11 +66,21 @@ function addCurrentUsers(users){
 
 addCurrentUsers(users);
 
-function deleteUser(deleteUser, i){
+function deleteUser(deleteUser){
     const user = deleteUser.parentElement.parentElement;
     const userParent = user.parentElement;
     const userToBeDeleted = [...userParent.children].indexOf(user);
 
     user.remove(); // remove the user (tr element) from the DOM
     users.splice(userToBeDeleted, 1); // remove the user object from the array users
+}
+
+// Transform the date from current format to Day/Month/Year format
+
+function dateFormater(date){
+    const year = date.match(/^[0-9]{4}/)[0];
+    const month = date.match(/-[0-9]{2}/)[0].replace('-', '');
+    const day = date.match(/-[0-9]{2}T/)[0].replace('T', '').replace('-', '');
+
+    return day + '/' + month + '/' + year;
 }
