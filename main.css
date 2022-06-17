@@ -1,0 +1,101 @@
+*{
+    box-sizing: border-box;
+}
+
+.manage-users{
+    padding: 100px 20px;
+}
+
+.manage-users__wrapper, .manage-users__add-user{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 2px #ddd;
+}
+
+thead tr th{
+    padding: 10px 20px;
+    text-align: left;
+}
+
+tbody tr td{
+    padding: 10px 20px;
+    text-align: left;
+}
+
+tbody tr td .status{
+    padding: 4px 10px;
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+.manage-users__heading{
+    font-size: 30px;
+}
+
+.manage-users__add-user{
+    margin-top: 30px;
+    padding: 25px 20px;
+}
+
+.manage-users__add-user-wrapper{
+    display: none;
+}
+
+.manage-users__form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.manage-users__form-item{
+    width: 30%;
+    padding: 15px 5px;
+}
+
+.manage-users__form-item input{
+    width: 100%;
+    border: 1px solid #999;
+    border-radius: 5px;
+}
+
+.manage-users__form-item label{
+    display: block;
+    margin-bottom: 5px;
+    color: #444;
+}
+
+.manage-users__form-action, .manage-users__show-form{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.manage-users__show-form{
+    margin-top: 30px;
+}
+
+.button{
+    padding: 10px 20px;
+    border: 1px solid #f0a91f;
+    border-radius: 7px;
+    background-color: #f0a91f;
+    color: #666666;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+/* Users Status */
+
+.valide {
+    background-color: #5BE881;
+}
+
+.rejected {
+    background-color: #FF0000;
+}
+
+.on-validation {
+    background-color: #FDB64D;
+}
