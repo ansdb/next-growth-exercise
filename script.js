@@ -30,7 +30,7 @@ const users = [
 
 function addCurrentUsers(users){
 
-        users.forEach(userItems => {
+        users.forEach( userItems => {
             const user = document.createElement('tr');
             const usersAddIn = document.querySelector('.manage-users__users');
 
@@ -57,9 +57,18 @@ function addCurrentUsers(users){
             }
 
             const actionRow = document.createElement('td');
-            actionRow.innerHTML = '<button type="button" class="delete-user"></button>';
+            actionRow.innerHTML = '<button type="button" class="delete-user" onclick="deleteUser(this)"></button>';
             user.append(actionRow);
         });
 }
 
 addCurrentUsers(users);
+
+function deleteUser(deleteUser, i){
+    const user = deleteUser.parentElement.parentElement;
+    const userParent = user.parentElement;
+    const userToBeDeleted = [...userParent.children].indexOf(user);
+
+    user.remove(); // remove the user (tr element) from the DOM
+    users.splice(userToBeDeleted, 1); // remove the user object from the array users
+}
