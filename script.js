@@ -106,3 +106,61 @@ function addUserFormToggler(){
 }
 
 addUserFormToggler();
+
+function addNewUser(){
+    const addUserBtn = document.querySelector('.add-user-btn');
+    const newUser = {
+        id: "",
+        createdDate: "",
+        status: "",
+        firstName: "",
+        lastName: "",
+        userName: "",
+        registrationNumber: "",
+    };
+
+    addUserBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        const formInfo = event.target.parentElement.parentElement;
+        const user = document.createElement('tr');
+        const usersList = document.querySelector('.manage-users__users');
+
+        newUser.id = Math.random()*10000;
+        newUser.createdDate = formInfo['creation-date'].value;
+        newUser.status = formInfo.status.value;
+        newUser.firstName = formInfo['first-name'].value;
+        newUser.lastName = formInfo['last-name'].value;
+        newUser.userName = formInfo.username.value;
+        newUser.registrationNumber = formInfo['registration-number'].value;
+
+        console.log(newUser, users);
+        users.push(newUser);
+
+        for(let userItem in newUser){
+            userInfo = document.createElement('td');
+
+            if(userItem === 'status'){
+                if(newUser[userItem] === 'En validation'){
+                    userInfo.innerHTML = '<span class="status on-validation">' + newUser[userItem] + '</span>';
+                }else if(newUser[userItem] === 'Validé'){
+                    userInfo.innerHTML = '<span class="status valide">' + newUser[userItem] + '</span>';
+                }else if(newUser[userItem] === 'Rejeté'){
+                    userInfo.innerHTML = '<span class="status rejected">' + newUser[userItem] + '</span>'
+                }
+            } else if(userItem === 'createdDate'){
+                userInfo.innerText = newUser[userItem];
+            } else{
+                userInfo.innerText = newUser[userItem];
+            }
+
+            user.append(userInfo);
+            usersList.append(user);
+        }
+
+        const actionRow = document.createElement('td');
+        actionRow.innerHTML = '<button type="button" class="delete-user" onclick="deleteUser(this)"></button>';
+        user.append(actionRow); 
+    });
+}
+
+addNewUser();
