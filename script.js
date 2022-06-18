@@ -28,39 +28,45 @@ const users = [
     }
 ]
 
+function addUserInfo(userItems, user, isUserNew){
+    for(let userItem in userItems){
+        userInfo = document.createElement('td');
+
+        if(userItem === 'status'){
+            if(userItems[userItem] === 'En validation'){
+                userInfo.innerHTML = '<span class="status on-validation">' + userItems[userItem] + '</span>';
+            }else if(userItems[userItem] === 'Validé'){
+                userInfo.innerHTML = '<span class="status valide">' + userItems[userItem] + '</span>';
+            }else if(userItems[userItem] === 'Rejeté'){
+                userInfo.innerHTML = '<span class="status rejected">' + userItems[userItem] + '</span>'
+            }
+        } else if(userItem === 'createdDate'){
+            if(!isUserNew){
+                userInfo.innerText = dateFormater(userItems[userItem]);
+            }else{
+                userInfo.innerText = userItems[userItem];
+            }
+        } else{
+            userInfo.innerText = userItems[userItem];
+        }
+
+        user.append(userInfo);
+    }
+}
+
 function addCurrentUsers(users){
 
         users.forEach( userItems => {
             const user = document.createElement('tr');
-            const usersAddIn = document.querySelector('.manage-users__users');
+            const usersList = document.querySelector('.manage-users__users');
 
             user.className = 'manage-users__user';
 
-            usersAddIn.append(user);
+            usersList.append(user);
 
-            for(let userItem in userItems){
-                userInfo = document.createElement('td');
+            addUserInfo(userItems, user, false)
 
-                if(userItem === 'status'){
-                    if(userItems[userItem] === 'En validation'){
-                        userInfo.innerHTML = '<span class="status on-validation">' + userItems[userItem] + '</span>';
-                    }else if(userItems[userItem] === 'Validé'){
-                        userInfo.innerHTML = '<span class="status valide">' + userItems[userItem] + '</span>';
-                    }else if(userItems[userItem] === 'Rejeté'){
-                        userInfo.innerHTML = '<span class="status rejected">' + userItems[userItem] + '</span>'
-                    }
-                } else if(userItem === 'createdDate'){
-                    userInfo.innerText = dateFormater(userItems[userItem]);
-                } else{
-                    userInfo.innerText = userItems[userItem];
-                }
-
-                user.append(userInfo);
-            }
-
-            const actionRow = document.createElement('td');
-            actionRow.innerHTML = '<button type="button" class="delete-user" onclick="deleteUser(this)"></button>';
-            user.append(actionRow);
+            addDeleteUserToDOM(user)
         });
 }
 
@@ -73,14 +79,23 @@ function deleteUser(deleteUser){
 
     user.remove(); // remove the user (tr element) from the DOM
     users.splice(userToBeDeleted, 1); // remove the user object from the array users
+    console.log(users);
 }
 
 // Transform the date from current format to Day/Month/Year format
 
 function dateFormater(date){
-    const year = date.match(/^[0-9]{4}/)[0];
+    const year = date.match(/^([0-9]{4})/)[0];
     const month = date.match(/-[0-9]{2}/)[0].replace('-', '');
     const day = date.match(/-[0-9]{2}T/)[0].replace('T', '').replace('-', '');
+
+    return day + '/' + month + '/' + year;
+}
+
+function dateFormaterNewUser(date){
+    const year = date.match(/^([0-9]{4})/)[0];
+    const month = date.match(/-[0-9]{2}-/)[0].replace(/-/g, '');
+    const day = date.match(/(-[0-9]{2})$/)[0].replace('-', '');
 
     return day + '/' + month + '/' + year;
 }
@@ -121,12 +136,13 @@ function addNewUser(){
 
     addUserBtn.addEventListener('click', (event) => {
         event.preventDefault();
+
         const formInfo = event.target.parentElement.parentElement;
         const user = document.createElement('tr');
         const usersList = document.querySelector('.manage-users__users');
 
-        newUser.id = Math.random()*10000;
-        newUser.createdDate = formInfo['creation-date'].value;
+        newUser.id = Math.ceil(Math.random()*1000000000) + '';
+        newUser.createdDate = dateFormaterNewUser(formInfo['creation-date'].value);
         newUser.status = formInfo.status.value;
         newUser.firstName = formInfo['first-name'].value;
         newUser.lastName = formInfo['last-name'].value;
@@ -136,31 +152,18 @@ function addNewUser(){
         console.log(newUser, users);
         users.push(newUser);
 
-        for(let userItem in newUser){
-            userInfo = document.createElement('td');
+        addUserInfo(newUser, user, true);
 
-            if(userItem === 'status'){
-                if(newUser[userItem] === 'En validation'){
-                    userInfo.innerHTML = '<span class="status on-validation">' + newUser[userItem] + '</span>';
-                }else if(newUser[userItem] === 'Validé'){
-                    userInfo.innerHTML = '<span class="status valide">' + newUser[userItem] + '</span>';
-                }else if(newUser[userItem] === 'Rejeté'){
-                    userInfo.innerHTML = '<span class="status rejected">' + newUser[userItem] + '</span>'
-                }
-            } else if(userItem === 'createdDate'){
-                userInfo.innerText = newUser[userItem];
-            } else{
-                userInfo.innerText = newUser[userItem];
-            }
+        addDeleteUserToDOM(user)
 
-            user.append(userInfo);
-            usersList.append(user);
-        }
-
-        const actionRow = document.createElement('td');
-        actionRow.innerHTML = '<button type="button" class="delete-user" onclick="deleteUser(this)"></button>';
-        user.append(actionRow); 
+        usersList.append(user);
     });
+}
+
+function addDeleteUserToDOM(user){
+    const actionRow = document.createElement('td');
+    actionRow.innerHTML = '<button type="button" class="delete-user" onclick="deleteUser(this)"></button>';
+    user.append(actionRow);
 }
 
 addNewUser();
