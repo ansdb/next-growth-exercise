@@ -84,3 +84,25 @@ function dateFormater(date){
 
     return day + '/' + month + '/' + year;
 }
+
+// Show ajout d'utilisateurs form
+
+function addUserFormToggler(){
+    const addUserForm = document.querySelector('#addUserForm');
+    const showButton = document.querySelector('.manage-users__show-form').firstElementChild;
+
+    showButton.addEventListener('click', (event) => {
+        if(!addUserForm.className.includes('show')){
+            showButton.parentElement.style.display = 'none';
+            addUserForm.className += ' show';
+            event.target.setAttribute('aria-expanded', 'true');
+        }else{
+            // From the imaegs on the exercise page this bellow part might be optional and not neccessary
+            addUserForm.className = addUserForm.className.replace(' show', '');
+            event.target.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+}
+
+addUserFormToggler();

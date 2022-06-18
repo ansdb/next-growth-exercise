@@ -63,10 +63,13 @@ tbody tr td:last-of-type, thead tr th:last-of-type{
     display: none;
 }
 
+.manage-users__add-user-wrapper.show{
+    display: block !important;
+}
+
 .manage-users__form{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
 }
 
 .manage-users__form-item{
@@ -74,10 +77,23 @@ tbody tr td:last-of-type, thead tr th:last-of-type{
     padding: 15px 5px;
 }
 
+.firstName, .lastName, .username{
+    margin-right: 40px;
+}
+
 .manage-users__form-item input{
     width: 100%;
+    height: 30px;
     border: 1px solid #999;
     border-radius: 5px;
+}
+
+.manage-users__form-item.matricule{
+    width: 100%;
+}
+
+.manage-users__form-item.matricule input{
+    width: 30%;
 }
 
 .manage-users__form-item label{
@@ -104,6 +120,7 @@ tbody tr td:last-of-type, thead tr th:last-of-type{
     color: #666666;
     font-size: 17px;
     cursor: pointer;
+    margin-top: 15px;
 }
 
 /* Users Status */

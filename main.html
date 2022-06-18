@@ -30,30 +30,30 @@
 
         <div class="manage-users__add-user">
 
-            <div class="manage-users__add-user-wrapper">
+            <div class="manage-users__add-user-wrapper" id="addUserForm">
                 <h1 class="manage-users__heading">Ajout d'utilisateurs</h1>
                 <form class="manage-users__form">
-                    <div class="manage-users__form-item">
+                    <div class="manage-users__form-item firstName">
                         <label for="first-first-name">Nom</label>
                         <input type="text" id="first-name" name="first-name" />
                     </div>
-                    <div class="manage-users__form-item">
+                    <div class="manage-users__form-item lastName">
                         <label for="last-name">Prenom</label>
                         <input type="text" id="last-name" name="last-name" />
                     </div>
-                    <div class="manage-users__form-item">
+                    <div class="manage-users__form-item status">
                         <label for="status">Etat</label>
                         <input type="text" id="status" name="status" />
                     </div>
-                    <div class="manage-users__form-item">
+                    <div class="manage-users__form-item username">
                         <label for="username">Nom d'utilisateur</label>
                         <input type="text" id="username" name="username" />
                     </div>
-                    <div class="manage-users__form-item">
+                    <div class="manage-users__form-item creationDate">
                         <label for="creation-date">Date de creation</label>
                         <input type="date" id="creation-date" name="creation-date" />
                     </div>
-                    <div class="manage-users__form-item">
+                    <div class="manage-users__form-item matricule">
                         <label for="registration-number">Matricule</label>
                         <input type="text" id="registration-number" name="registration-number" />
                     </div>
@@ -64,7 +64,7 @@
             </div>
 
             <div class="manage-users__show-form">
-                <button type="button" class="button">Ajouter utilisateur</button>
+                <button type="button" class="button" aria-labelledby="addUserForm" aria-expanded="false">Ajouter utilisateur</button>
             </div>
         </div>
     </section>
