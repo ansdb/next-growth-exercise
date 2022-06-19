@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Users Exercise</title>
+</head>
+<body>
+    <section class="manage-users">
+
+        <div class="manage-users__wrapper">
+            <table class="manage-users__list">
+                <thead class="manage-users__list-head">
+                    <tr>
+                        <th>ID</th>
+                        <th>Date de creation</th>
+                        <th>Etat</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Nom d'utilisateur</th>
+                        <th>Matricule</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody class="manage-users__users"></tbody>
+            </table>
+        </div>
+
+        <div class="manage-users__add-user">
+
+            <div class="manage-users__add-user-wrapper" id="addUserForm">
+                <h1 class="manage-users__heading">Ajout d'utilisateurs</h1>
+                <form class="manage-users__form">
+                    <div class="manage-users__form-item firstName">
+                        <label for="first-first-name">Nom</label>
+                        <input type="text" id="first-name" name="first-name" />
+                    </div>
+                    <div class="manage-users__form-item lastName">
+                        <label for="last-name">Prenom</label>
+                        <input type="text" id="last-name" name="last-name" />
+                    </div>
+                    <div class="manage-users__form-item status">
+                        <label for="status">Etat</label>
+                        <input type="text" id="status" name="status" />
+                    </div>
+                    <div class="manage-users__form-item username">
+                        <label for="username">Nom d'utilisateur</label>
+                        <input type="text" id="username" name="username" />
+                    </div>
+                    <div class="manage-users__form-item creationDate">
+                        <label for="creation-date">Date de creation</label>
+                        <input type="date" id="creation-date" name="creation-date" />
+                    </div>
+                    <div class="manage-users__form-item matricule">
+                        <label for="registration-number">Matricule</label>
+                        <input type="text" id="registration-number" name="registration-number" />
+                    </div>
+                    <div class="manage-users__form-action">
+                        <button type="submit" class="button add-user-btn">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="manage-users__show-form">
+                <button type="button" class="button" aria-labelledby="addUserForm" aria-expanded="false">Ajouter utilisateur</button>
+            </div>
+        </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>
